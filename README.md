@@ -1,5 +1,10 @@
 # 🏠 Krib — Swipe. Match. Move In.
 
+[![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)](https://flutter.dev)
+[![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase) ](https://firebase.google.com)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg?style=for-the-badge)](https://github.com/tychocollins/krib-app/actions)
+
 > **The Modern App For Real Estate.** A high-energy, vertical-swipe discovery app designed to eliminate scroll fatigue and help you find your next home in seconds.
 
 ---
