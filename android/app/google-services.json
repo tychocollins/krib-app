@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "211993168230",
+    "project_id": "krib-e8b42",
+    "storage_bucket": "krib-e8b42.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211993168230:android:df4683732478bb72eae0a7",
+        "android_client_info": {
+          "package_name": "com.example.krib"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_OHD9Px2pAOHbfarPD3hqB7xebIi5HxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
