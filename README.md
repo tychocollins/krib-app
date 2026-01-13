@@ -46,10 +46,6 @@ Here is the "Correct" version. You can copy this entire block and paste it direc
 
 ---
 
-```
-
----
-
 ## 🤝 Contributing
 
 Have ideas for a "Krib Score" or neighborhood "Vibe Checks"?
