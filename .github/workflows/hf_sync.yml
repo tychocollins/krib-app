@@ -1,0 +1,41 @@
+name: Sync to Hugging Face Hub
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Prepare Clean Deployment
+        run: |
+          # Verify .env is not present
+          rm -f .env
+          
+          # Create orphan branch to strip git history (avoiding large binary errors)
+          git checkout --orphan hf-sync-deploy
+          git reset --soft
+          
+          # Stage all files
+          git add .
+          
+          # Configure committer
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          
+          # Commit
+          git commit -m "Sync: Update from GitHub Main"
+
+      - name: Push to Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          # Push to Hugging Face Space 'main' branch
+          git remote add space https://tychocollins:$HF_TOKEN@huggingface.co/spaces/tychocollins7/kribapp
+          git push --force space hf-sync-deploy:main
