@@ -1,6 +1,6 @@
 # 🏠 Krib — Swipe. Match. Move In.
 
-> **The TikTok of Real Estate.** A high-energy, vertical-swipe discovery app designed to eliminate scroll fatigue and help you find your next home in seconds.
+> **The Modern App For Real Estate.** A high-energy, vertical-swipe discovery app designed to eliminate scroll fatigue and help you find your next home in seconds.
 
 ---
 
