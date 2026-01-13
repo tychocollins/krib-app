@@ -1,67 +1,38 @@
-🏠 Krib — Swipe. Match. Move In.
-Krib is a modern, high-energy property discovery app designed to eliminate scroll fatigue. Instead of endless lists, Krib uses a fast-paced, vertical-swipe interface (TikTok-style) to help you find your next home.
+# 🏠 Krib — Swipe. Match. Move In.
 
-🚀 Key Features
-Vertical Swipe Feed: A fast, gesture-based way to browse listings. Flick up to "Krib it" (save), flick down to skip.
+> **The TikTok of Real Estate.** A high-energy, vertical-swipe discovery app designed to eliminate scroll fatigue and help you find your next home in seconds.
 
-Krib Neon UI: A high-contrast, dark-mode design system built for 2026 aesthetics.
+---
 
-Real-Time Data: Powered by RentCast & Firebase to ensure you're seeing available homes, not "zombies."
+## 🚀 Key Features
+* **Vertical Swipe Feed:** A fast-paced, gesture-based interface. Flick **up** to "Krib it" (save) and **down** to skip.
+* **Krib Neon UI:** A high-contrast, dark-mode design system with electric green accents.
+* **Real-Time Data:** Direct integration with **RentCast** and **Firebase** for live property listings.
+* **Agentic Development:** Built using Google Antigravity’s multi-agent orchestration.
 
-Cross-Platform: Built with Flutter for a seamless experience on Web and Mobile.
+---
 
-🛠️ Tech Stack
-Frontend: Flutter (Dart)
+## 🛠️ Tech Stack
 
-Backend: Firebase (Firestore & Auth)
+| Layer | Technology |
+| :--- | :--- |
+| **Frontend** | [Flutter](https://flutter.dev) (Dart) |
+| **Backend** | [Firebase](https://firebase.google.com) (Firestore & Auth) |
+| **Data API** | [RentCast API](https://www.rentcast.io/api) |
+| **Workflow** | Google Antigravity |
 
-Data API: RentCast
+---
 
-Orchestration: Built using Google Antigravity multi-agent systems.
+## 📦 Getting Started
 
-📦 Getting Started
-Prerequisites
-Flutter SDK (v3.30 or higher recommended)
+### Prerequisites
+* **Flutter SDK**: `v3.30+`
+* **Firebase Project**: Firestore & Auth enabled.
+* **RentCast API Key**: [Get your key here](https://www.rentcast.io/api).
 
-A Firebase project setup
+### Installation
 
-RentCast API Key
-
-Installation
-Clone the repo:
-
-Bash
-
-git clone https://github.com/tychocollins/krib-app.git
-cd krib-app
-Install dependencies:
-
-Bash
-
-flutter pub get
-Configure Environment: Create a .env or config.dart file in lib/src/config/ and add your API keys:
-
-Dart
-
-const RENTCAST_API_KEY = 'your_key_here';
-Run the app:
-
-Bash
-
-flutter run -d chrome
-🏗️ Project Structure
-This project follows a Feature-First architecture to stay organized:
-
-lib/src/features/feed: The core swiping logic and UI.
-
-lib/src/features/auth: User login and onboarding.
-
-lib/src/data: Repositories and API service wrappers.
-
-lib/src/theme: The "Krib Neon" design system tokens.
-
-🛡️ License
-Distributed under the MIT License. See LICENSE for more information.
-
-🤝 Contributing
-Krib is currently in active development. If you have ideas for the "Krib Score" or neighborhood "Vibe Checks," feel free to open an issue or submit a PR!
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/tychocollins/krib-app.git](https://github.com/tychocollins/krib-app.git)
+   cd krib-app
