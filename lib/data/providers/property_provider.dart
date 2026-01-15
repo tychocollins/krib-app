@@ -20,8 +20,7 @@ final rentCastServiceProvider = Provider<RentCastService>((ref) {
   return RentCastService(http.Client(), apiKey: apiKey);
 });
 
-final propertyFeedProvider = FutureProvider<List<Property>>((ref) async {
+final propertiesProvider = FutureProvider.family<List<Property>, ({String city, String state})>((ref, args) async {
   final service = ref.watch(rentCastServiceProvider);
-  // Hardcoded for now, can be dynamic later
-  return service.getProperties(city: 'Austin', state: 'TX'); 
+  return service.getProperties(city: args.city, state: args.state);
 });

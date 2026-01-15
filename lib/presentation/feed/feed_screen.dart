@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:krib/data/providers/location_provider.dart';
 import 'package:krib/data/providers/property_provider.dart';
 import 'package:krib/data/repositories/favorites_repository.dart';
 import 'package:krib/presentation/feed/widgets/property_card.dart';
@@ -25,7 +27,24 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final propertiesAsync = ref.watch(propertyFeedProvider);
+    // Watch location state to fetch correct properties
+    final locationState = ref.watch(locationProvider);
+    
+    // Use the provider family if you updated it, or ensuring the provider accepts args.
+    // Based on previous files, propertyFeedProvider might need update or we use propertiesProvider directly if it exists.
+    // Checking previous steps, `property_provider.dart` was not recently edited to add family.
+    // I need to check `property_provider.dart` to see if it accepts arguments. 
+    // If not, I'll need to update it. 
+    // For now, let's assume I need to update the provider too. Update logic below assumes provider update.
+    
+    // Actually, I should verify property_provider.dart first. 
+    // But since I am in a block, I will assume it needs update and will plan to update it next.
+    // Wait, the previous failing tool call implied usage of `propertiesProvider(city: ..., state: ...)`
+    // I will use that pattern here.
+    
+    final propertiesAsync = ref.watch(propertiesProvider(
+      (city: locationState.city, state: locationState.state),
+    ));
     final favoritesRepo = ref.read(favoritesProvider);
 
     return Scaffold(
@@ -39,6 +58,7 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                   // Profile Button
                   IconButton(
                     icon: const Icon(Icons.person_outline, color: Colors.white, size: 28),
                     onPressed: () {
@@ -48,16 +68,28 @@ class _FeedScreenState extends ConsumerState<FeedScreen> {
                       );
                     },
                   ),
-                   // Gradient Text or Logo
-                  const Text(
-                        "KRIB",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w900,
-                          fontSize: 24,
-                          letterSpacing: 1.2,
-                        ),
-                  ),
+                   // Location Indicator (Clickable to change)
+                   GestureDetector(
+                    onTap: () {
+                       // Clear location to re-trigger selection screen
+                       ref.read(locationProvider.notifier).clearLocation();
+                    },
+                     child: Row(
+                       children: [
+                         const Icon(Icons.location_on, color: Color(0xFFE91E63)),
+                         const SizedBox(width: 4),
+                         Text(
+                           // Display selected city dynamically
+                           "${ref.watch(locationProvider).city}, ${ref.watch(locationProvider).state}",
+                           style: GoogleFonts.outfit(
+                             color: Colors.white,
+                             fontSize: 18,
+                             fontWeight: FontWeight.bold,
+                           ),
+                         ),
+                       ],
+                     ),
+                   ),
                   IconButton(
                     icon: const Icon(Icons.favorite_border, color: Colors.white, size: 28),
                     onPressed: () {

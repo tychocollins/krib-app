@@ -7,6 +7,7 @@ class MockRentCastService implements RentCastService {
   MockRentCastService(http.Client client, {required String apiKey});
 
   @override
+  @override
   Future<List<Property>> getProperties({
     required String city,
     required String state,
@@ -15,12 +16,11 @@ class MockRentCastService implements RentCastService {
     // Simulate network delay
     await Future.delayed(const Duration(milliseconds: 500));
 
-    // Helper to generate random properties for infinite-feeling scroll
-    final random = Random();
-    
-    final List<Property> hardcoded = [
+    // Expanded Mock Database
+    final allProperties = [
+      // Austin, TX
       const Property(
-        id: 'mock_1',
+        id: 'mock_austin_1',
         address: '123 Austin Blvd',
         city: 'Austin',
         state: 'TX',
@@ -34,7 +34,7 @@ class MockRentCastService implements RentCastService {
         description: 'Modern downtown living with spacious interiors.',
       ),
       const Property(
-        id: 'mock_2',
+        id: 'mock_austin_2',
         address: '456 Congress Ave',
         city: 'Austin',
         state: 'TX',
@@ -48,7 +48,7 @@ class MockRentCastService implements RentCastService {
         description: 'Luxury high-rise condo with panoramic city views.',
       ),
       const Property(
-        id: 'mock_3',
+        id: 'mock_austin_3',
         address: '789 Lake Travis Dr',
         city: 'Austin',
         state: 'TX',
@@ -61,8 +61,8 @@ class MockRentCastService implements RentCastService {
         imageUrls: ['https://images.unsplash.com/photo-1600596542815-22b5c010deb7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
         description: 'Waterfront property with private dock access.',
       ),
-      const Property(
-        id: 'mock_4',
+       const Property(
+        id: 'mock_austin_4',
         address: '321 Zilker Park Way',
         city: 'Austin',
         state: 'TX',
@@ -75,92 +75,123 @@ class MockRentCastService implements RentCastService {
         imageUrls: ['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
         description: 'Architectural masterpiece near Zilker Park.',
       ),
+
+      // New York, NY
       const Property(
-        id: 'mock_5',
-        address: '555 Rainey St',
-        city: 'Austin',
-        state: 'TX',
-        zipCode: '78701',
-        price: 525000,
+        id: 'mock_ny_1',
+        address: '101 Park Ave',
+        city: 'New York',
+        state: 'NY',
+        zipCode: '10172',
+        price: 2500000,
         bedrooms: 2,
         bathrooms: 2,
-        squareFootage: 1100,
-        propertyType: 'Apartment',
-        imageUrls: ['https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
-        description: 'Trendy apartment in the heart of the entertainment district.',
-      ),
-      const Property(
-        id: 'mock_6',
-        address: '888 Hill Country Rd',
-        city: 'Austin',
-        state: 'TX',
-        zipCode: '78736',
-        price: 750000,
-        bedrooms: 3,
-        bathrooms: 3,
-        squareFootage: 2600,
-        propertyType: 'Single Family',
-        imageUrls: ['https://images.unsplash.com/photo-1580587771525-78b9dba3b91d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
-        description: 'Quiet retreat surrounded by nature.',
-      ),
-      const Property(
-        id: 'mock_7',
-        address: '222 SoCo Blvd',
-        city: 'Austin',
-        state: 'TX',
-        zipCode: '78704',
-        price: 890000,
-        bedrooms: 3,
-        bathrooms: 2,
-        squareFootage: 1950,
-        propertyType: 'Single Family',
-        imageUrls: ['https://images.unsplash.com/photo-1583608205776-bfd35f0d9f8e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
-        description: 'Renovated bungalow on South Congress.',
-      ),
-      const Property(
-        id: 'mock_8',
-        address: '101 East Side Dr',
-        city: 'Austin',
-        state: 'TX',
-        zipCode: '78702',
-        price: 420000,
-        bedrooms: 2,
-        bathrooms: 1,
-        squareFootage: 950,
-        propertyType: 'Tiny Home',
-        imageUrls: ['https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
-        description: 'Cozy and modern living on the East Side.',
-      ),
-      const Property(
-        id: 'mock_9',
-        address: '777 Domain Pkwy',
-        city: 'Austin',
-        state: 'TX',
-        zipCode: '78758',
-        price: 580000,
-        bedrooms: 2,
-        bathrooms: 2,
-        squareFootage: 1300,
+        squareFootage: 1200,
         propertyType: 'Condo',
-        imageUrls: ['https://images.unsplash.com/photo-1484154218962-a1c002085d2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
-        description: 'Steps away from shopping and dining at The Domain.',
+        imageUrls: ['https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
+        description: 'Exquisite Park Avenue condo with skyline views.',
       ),
       const Property(
-        id: 'mock_10',
-        address: '999 Tarrytown Ln',
-        city: 'Austin',
-        state: 'TX',
-        zipCode: '78703',
-        price: 1500000,
-        bedrooms: 5,
-        bathrooms: 4,
-        squareFootage: 3800,
+        id: 'mock_ny_2',
+        address: '55 Brooklyn Heights',
+        city: 'Brooklyn', // Handling "New York" area fuzziness
+        state: 'NY',
+        zipCode: '11201',
+        price: 1800000,
+        bedrooms: 3,
+        bathrooms: 2,
+        squareFootage: 1800,
+        propertyType: 'Brownstone',
+        imageUrls: ['https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
+        description: 'Classic Brownstone with modern renovations.',
+      ),
+      const Property(
+        id: 'mock_ny_3',
+        address: '88 SoHo Loft',
+        city: 'New York',
+        state: 'NY',
+        zipCode: '10012',
+        price: 3200000,
+        bedrooms: 1,
+        bathrooms: 1,
+        squareFootage: 2000,
+        propertyType: 'Loft',
+        imageUrls: ['https://images.unsplash.com/photo-1502005229762-cf1c2da5c5d1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
+        description: 'Expansive artist loft in the heart of SoHo.',
+      ),
+
+      // Los Angeles, CA
+      const Property(
+        id: 'mock_la_1',
+        address: '123 Hollywood Hills',
+        city: 'Los Angeles',
+        state: 'CA',
+        zipCode: '90068',
+        price: 4500000,
+        bedrooms: 4,
+        bathrooms: 5,
+        squareFootage: 4000,
         propertyType: 'Single Family',
+        imageUrls: ['https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
+        description: 'Modern masterpiece with pool and canyon views.',
+      ),
+      const Property(
+        id: 'mock_la_2',
+        address: '456 Venice Blvd',
+        city: 'Los Angeles',
+        state: 'CA',
+        zipCode: '90291',
+        price: 2100000,
+        bedrooms: 3,
+        bathrooms: 2,
+        squareFootage: 1800,
+        propertyType: 'Bungalow',
         imageUrls: ['https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
-        description: 'Classic elegance in the prestigious Tarrytown neighborhood.',
+        description: 'Charming beach bungalow steps from the sand.',
+      ),
+       const Property(
+        id: 'mock_la_3',
+        address: '789 Beverly Dr',
+        city: 'Los Angeles',
+        state: 'CA',
+        zipCode: '90210',
+        price: 8500000,
+        bedrooms: 6,
+        bathrooms: 7,
+        squareFootage: 7000,
+        propertyType: 'Mansion',
+        imageUrls: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
+        description: 'Iconic Beverly Hills estate with guest house.',
+      ),
+      
+      // Miami, FL
+       const Property(
+        id: 'mock_miami_1',
+        address: '10 Ocean Dr',
+        city: 'Miami Beach',
+        state: 'FL',
+        zipCode: '33139',
+        price: 1500000,
+        bedrooms: 2,
+        bathrooms: 2,
+        squareFootage: 1400,
+        propertyType: 'Condo',
+        imageUrls: ['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'],
+        description: 'Oceanfront Art Deco condo.',
       ),
     ];
 
-    return hardcoded;
+    // Filter Logic
+    final filtered = allProperties.where((property) {
+      final cityMatch = property.city.toLowerCase() == city.toLowerCase();
+      
+      // Simple state matching - assuming strict 2-letter code for now
+      final stateMatch = property.state.toLowerCase() == state.toLowerCase();
+      
+      // If filtering by just city (common mock behavior for ease), or both
+      return cityMatch && stateMatch;
+    }).toList();
+
+    return filtered;
   }
 }
